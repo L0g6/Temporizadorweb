@@ -19,6 +19,7 @@ class Timer {
             <input type="number" class="seconds" min="0" max="59" placeholder="SS">
             <button class="start-stop">Iniciar</button>
             <button class="reset">Reiniciar</button>
+            <button class="delete">Borrar</button>
             <span class="time-display">00:00:00</span>
         `;
         this.container.appendChild(this.element);
@@ -29,10 +30,17 @@ class Timer {
         this.secondsInput = this.element.querySelector('.seconds');
         this.startStopButton = this.element.querySelector('.start-stop');
         this.resetButton = this.element.querySelector('.reset');
+        this.deleteButton = this.element.querySelector('.delete');
         this.timeDisplay = this.element.querySelector('.time-display');
 
         this.startStopButton.addEventListener('click', () => this.toggleTimer());
         this.resetButton.addEventListener('click', () => this.resetTimer());
+        this.deleteButton.addEventListener('click', () => this.deleteTimer());
+    }
+
+    deleteTimer() {
+        this.stopTimer();
+        this.element.remove();
     }
 
     toggleTimer() {
