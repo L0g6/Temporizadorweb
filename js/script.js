@@ -99,9 +99,18 @@ class Timer {
 
     playAlarm() {
         const description = this.descriptionInput.value || 'Temporizador';
+        
+        // Mostrar alerta
         alert(`¡Tiempo terminado! - ${description}`);
-        // Aquí se puede agregar un sonido de alarma
+        
+        // Reproducir sonido de alarma
+        const alarmSound = document.getElementById('alarm-sound');
+        if (alarmSound) {
+            alarmSound.play();
+        }
     }
+
+
 }
 
 const timersContainer = document.getElementById('timers-container');
