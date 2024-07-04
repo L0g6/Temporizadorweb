@@ -100,16 +100,25 @@ class Timer {
     playAlarm() {
         const description = this.descriptionInput.value || 'Temporizador';
         
-        // Mostrar alerta
-        alert(`¡Tiempo terminado! - ${description}`);
-        
         // Reproducir sonido de alarma
         const alarmSound = document.getElementById('alarm-sound');
         if (alarmSound) {
             alarmSound.play();
         }
+    
+        // Mostrar notificación del navegador si está permitido
+        if (Notification.permission === "granted") {
+            new Notification("¡Tiempo terminado!", {
+                body: description,
+                icon: "path/to/icon.png" // Opcional: añade un icono a la notificación
+            });
+        }
+    
+        // Mostrar alerta (esto bloqueará la ejecución, pero el sonido ya habrá comenzado)
+        setTimeout(() => {
+            alert(`¡Tiempo terminado! - ${description}`);
+        }, 100); // Pequeño retraso para asegurar que el sonido comience
     }
-
 
 }
 
@@ -117,6 +126,10 @@ const timersContainer = document.getElementById('timers-container');
 const addTimerButton = document.getElementById('add-timer');
 let timerCount = 0;
 
+// Al inicio del script o cuando se carga la página
+if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
 addTimerButton.addEventListener('click', () => {
     new Timer(timersContainer, timerCount++);
 });
