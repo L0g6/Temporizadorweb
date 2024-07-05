@@ -51,51 +51,54 @@ class Timer {
         }
     }
 
-    startTimer() {
-        if (!this.intervalId) {
-            if (this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
-                this.hours = parseInt(this.hoursInput.value) || 0;
-                this.minutes = parseInt(this.minutesInput.value) || 0;
-                this.seconds = parseInt(this.secondsInput.value) || 0;
-            }
-            this.intervalId = setInterval(() => this.updateTimer(), 1000);
-            this.startStopButton.textContent = 'Parar';
-        }
-    }
-
-    stopTimer() {
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-            this.intervalId = null;
-            this.startStopButton.textContent = 'Iniciar';
-        }
-    }
-
-    resetTimer() {
-        this.stopTimer();
-        this.hours = parseInt(this.hoursInput.value) || 0;
-        this.minutes = parseInt(this.minutesInput.value) || 0;
-        this.seconds = parseInt(this.secondsInput.value) || 0;
-        this.updateDisplay();
-    }
-
-    updateTimer() {
+startTimer() {
+    if (!this.intervalId) {
         if (this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
-            this.stopTimer();
-            this.playAlarm();
-        } else if (this.seconds === 0) {
-            if (this.minutes === 0) {
-                this.hours--;
-                this.minutes = 59;
-            } else {
-                this.minutes--;
-            }
-            this.seconds = 59;
-        } else {
-            this.seconds--;
+            this.hours = parseInt(this.hoursInput.value) || 0;
+            this.minutes = parseInt(this.minutesInput.value) || 0;
+            this.seconds = parseInt(this.secondsInput.value) || 0;
         }
+        this.startTime = Date.now();
+        this.totalSeconds = this.hours * 3600 + this.minutes * 60 + this.seconds;
+        this.intervalId = setInterval(() => this.updateTimer(), 1000);
+        this.startStopButton.textContent = 'Parar';
+        this.element.style.backgroundColor = '#e6ffe6';
+    }
+}
+
+stopTimer() {
+    if (this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+        this.startStopButton.textContent = 'Iniciar';
+        this.element.style.backgroundColor = 'initial';
+    }
+}
+
+resetTimer() {
+    this.stopTimer();
+    this.hours = parseInt(this.hoursInput.value) || 0;
+    this.minutes = parseInt(this.minutesInput.value) || 0;
+    this.seconds = parseInt(this.secondsInput.value) || 0;
+    this.totalSeconds = this.hours * 3600 + this.minutes * 60 + this.seconds;
+    this.updateDisplay();
+}
+
+updateTimer() {
+    const currentTime = Date.now();
+    const elapsedSeconds = Math.floor((currentTime - this.startTime) / 1000);
+    const remainingSeconds = Math.max(this.totalSeconds - elapsedSeconds, 0);
+
+    if (remainingSeconds === 0) {
+        this.stopTimer();
+        this.playAlarm();
+    } else {
+        this.hours = Math.floor(remainingSeconds / 3600);
+        this.minutes = Math.floor((remainingSeconds % 3600) / 60);
+        this.seconds = remainingSeconds % 60;
         this.updateDisplay();
     }
+}
 
     updateDisplay() {
         this.timeDisplay.textContent = `${this.padZero(this.hours)}:${this.padZero(this.minutes)}:${this.padZero(this.seconds)}`;
