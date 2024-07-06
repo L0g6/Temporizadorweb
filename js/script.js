@@ -7,6 +7,7 @@ class Timer {
         this.minutes = 0;
         this.seconds = 0;
         this.intervalId = null;
+        this.element.__timer = this;
     }
 
     createTimerElement() {
@@ -133,9 +134,12 @@ updateTimer() {
 
 }
 
+
 const timersContainer = document.getElementById('timers-container');
 const addTimerButton = document.getElementById('add-timer');
 let timerCount = 0;
+
+
 
 // Al inicio del script o cuando se carga la página
 if (Notification.permission !== "granted") {
@@ -147,3 +151,23 @@ addTimerButton.addEventListener('click', () => {
 
 // Iniciar con un temporizador
 new Timer(timersContainer, timerCount++);
+
+// Nuevas funciones para la ordenación
+function getTotalSeconds(timer) {
+    return timer.hours * 3600 + timer.minutes * 60 + timer.seconds;
+}
+
+function sortTimers() {
+    const timers = Array.from(timersContainer.children);
+    
+    timers.sort((a, b) => {
+        const timerA = a.__timer;
+        const timerB = b.__timer;
+        return getTotalSeconds(timerA) - getTotalSeconds(timerB);
+    });
+    
+    timers.forEach(timer => timersContainer.appendChild(timer));
+}
+
+// Agregar el evento al botón de ordenación
+document.getElementById('sort-timers').addEventListener('click', sortTimers);
