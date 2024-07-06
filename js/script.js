@@ -171,3 +171,5 @@ function sortTimers() {
 
 // Agregar el evento al botón de ordenación
 document.getElementById('sort-timers').addEventListener('click', sortTimers);
+
+// Comentario temporal
