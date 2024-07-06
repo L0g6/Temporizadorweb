@@ -169,6 +169,48 @@ function sortTimers() {
     timers.forEach(timer => timersContainer.appendChild(timer));
 }
 
+function saveTimers() {
+    const timers = Array.from(document.querySelectorAll('.timer')).map(timerElement => {
+        const timer = timerElement.__timer;
+        return {
+            description: timer.descriptionInput.value,
+            hours: timer.hoursInput.value,
+            minutes: timer.minutesInput.value,
+            seconds: timer.secondsInput.value
+        };
+    });
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(timers));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "temporizadores.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+function loadTimers(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const timers = JSON.parse(e.target.result);
+            timers.forEach(timerData => {
+                const newTimer = new Timer(timersContainer, timerCount++);
+                newTimer.descriptionInput.value = timerData.description;
+                newTimer.hoursInput.value = timerData.hours;
+                newTimer.minutesInput.value = timerData.minutes;
+                newTimer.secondsInput.value = timerData.seconds;
+            });
+        };
+        reader.readAsText(file);
+    }
+}
+
+// Añadir eventos para salvar y cargar temporizadores
+document.getElementById('save-timers').addEventListener('click', saveTimers);
+document.getElementById('load-timers').addEventListener('change', loadTimers);
+
 // Agregar el evento al botón de ordenación
 document.getElementById('sort-timers').addEventListener('click', sortTimers);
 

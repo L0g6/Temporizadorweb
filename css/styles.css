@@ -46,3 +46,15 @@ body {
 .delete:hover {
     background-color: #ff1a1a;
 }
+
+#load-timers {
+    display: none;
+}
+
+label[for="load-timers"] {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
