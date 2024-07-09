@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temporizador Múltiple</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <body>
     <div class="container">
         <h1>Temporizador Múltiple</h1>
         <div id="timers-container"></div>
-        <div class="controls">
-            <button id="add-timer">Agregar Temporizador</button>
-            <button id="sort-timers">Ordenar Temporizadores</button>
-            <button id="save-timers">Guardar Temporizadores</button>
-            <input type="file" id="load-timers" accept=".json">
-            <label for="load-timers">Cargar Temporizadores</label>
+        <div class="main-controls">
+            <button id="add-timer" title="Agregar Temporizador"><i class="fas fa-plus"></i></button>
+            <button id="sort-timers" title="Ordenar Temporizadores"><i class="fas fa-sort"></i></button>
+            <button id="save-timers" title="Guardar Temporizadores"><i class="fas fa-save"></i></button>
+            <input type="file" id="load-timers" accept=".json" hidden>
+            <label for="load-timers" title="Cargar Temporizadores"><i class="fas fa-upload"></i></label>
         </div>
-    </div>
+</div>
     <audio id="alarm-sound" src="sound/alarm.mp3"></audio>
     <script src="js/script.js"></script>
 </body>
