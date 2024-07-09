@@ -14,14 +14,18 @@ class Timer {
         this.element = document.createElement('div');
         this.element.className = 'timer';
         this.element.innerHTML = `
-            <input type="text" class="timer-description" placeholder="Descripción (min. 20 caracteres)" minlength="20">
+        <input type="text" class="timer-description" placeholder="Descripción (min. 20 caracteres)" minlength="20">
+        <div class="timer-inputs">
             <input type="number" class="hours" min="0" max="23" placeholder="HH">
             <input type="number" class="minutes" min="0" max="59" placeholder="MM">
             <input type="number" class="seconds" min="0" max="59" placeholder="SS">
+        </div>
+        <div class="timer-controls">
             <button class="start-stop">Iniciar</button>
             <button class="reset">Reiniciar</button>
             <button class="delete">Borrar</button>
-            <span class="time-display">00:00:00</span>
+        </div>
+        <span class="time-display">00:00:00</span>
         `;
         this.container.appendChild(this.element);
 
