@@ -12,11 +12,13 @@
     <div class="container">
         <h1>Temporizador Múltiple</h1>
         <div id="timers-container"></div>
-        <button id="add-timer">Agregar Temporizador</button>
-        <button id="sort-timers">Ordenar Temporizadores</button>
-        <button id="save-timers">Guardar Temporizadores</button>
-        <input type="file" id="load-timers" accept=".json">
-        <label for="load-timers">Cargar Temporizadores</label>
+        <div class="controls">
+            <button id="add-timer">Agregar Temporizador</button>
+            <button id="sort-timers">Ordenar Temporizadores</button>
+            <button id="save-timers">Guardar Temporizadores</button>
+            <input type="file" id="load-timers" accept=".json">
+            <label for="load-timers">Cargar Temporizadores</label>
+        </div>
     </div>
     <audio id="alarm-sound" src="sound/alarm.mp3"></audio>
     <script src="js/script.js"></script>
