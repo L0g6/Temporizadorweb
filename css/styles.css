@@ -1,66 +1,50 @@
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
 .container {
-    max-width: 800px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #2c3e50;
-    margin-bottom: 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .timer {
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    padding: 20px;
     margin-bottom: 20px;
-    transition: all 0.3s ease;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.timer input {
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    padding: 8px;
+.timer input, .timer button {
     margin: 5px;
 }
 
-.timer:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .timer-description {
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
 }
 
-.time-display {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2c3e50;
-    display: block;
-    margin-top: 10px;
-}
-
-#add-timer, #sort-timers, #save-timers, label[for="load-timers"] {
+#add-timer {
     margin-top: 20px;
-    margin-right: 10px;
 }
 
 .delete {
-    background-color: #95a5a6;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .delete:hover {
-    background-color: #7f8c8d;
+    background-color: #ff1a1a;
 }
 
 #load-timers {
@@ -68,59 +52,9 @@ h1 {
 }
 
 label[for="load-timers"] {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-label[for="load-timers"]:hover {
-    background-color: #2980b9;
-}
-
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-.start-stop {
-    background-color: #2ecc71;
-}
-
-.start-stop:hover {
-    background-color: #27ae60;
-}
-
-.reset {
-    background-color: #e74c3c;
-}
-
-.reset:hover {
-    background-color: #c0392b;
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    .timer input, .timer button {
-        width: calc(50% - 10px);
-        margin: 5px;
-    }
-
-    .timer-description {
-        width: calc(100% - 10px);
-    }
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
